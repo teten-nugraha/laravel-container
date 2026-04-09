@@ -1,0 +1,48 @@
+services:
+
+  app:
+    build: .
+    container_name: laravel_app
+    environment:
+      APP_NAME: Laravel
+      APP_ENV: local
+      APP_KEY: "base64:eZ/bltVtghoaZSdU+I14iF/BKOXCgnenDnmO2UCu+fk="
+      APP_URL: http://localhost:8000
+    volumes:
+      - .:/var/www
+      - vendor_data:/var/www/vendor
+      - storage_data:/var/www/storage
+      - C:/Users/tennu/Documents/RND/APP/myapp/storage_data:/var/www/storage/app/public
+      - cache_data:/var/www/bootstrap/cache
+    networks:
+      - laravel
+    healthcheck:
+      test: ["CMD", "php-fpm", "-t"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  nginx:
+    image: nginx:latest
+    container_name: laravel_nginx
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www:ro
+      - storage_data:/var/www/storage:ro
+      - C:/Users/tennu/Documents/RND/APP/myapp/storage_data:/var/www/storage/app/public:ro
+      - cache_data:/var/www/bootstrap/cache:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      app:
+        condition: service_healthy
+    networks:
+      - laravel
+
+networks:
+  laravel:
+
+volumes:
+  storage_data:
+  cache_data:
+  vendor_data:
