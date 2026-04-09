@@ -26,7 +26,7 @@ services:
     image: nginx:latest
     container_name: laravel_nginx
     ports:
-      - "8001:80"
+      - "8081:80"
     volumes:
       - .:/var/www:ro
       - storage_data:/var/www/storage:ro
