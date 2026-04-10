@@ -12,8 +12,8 @@ services:
       - .:/var/www
       - vendor_data:/var/www/vendor
       - storage_data:/var/www/storage
-      # - /var/www/test_apps:/var/www/storage/app/public
-      - C:\Users\tennu\Documents\RND\Laravel:/var/www/storage/app/public
+      - /var/www/test_apps:/var/www/storage/app/public
+      # - C:\Users\tennu\Documents\RND\Laravel:/var/www/storage/app/public
       - cache_data:/var/www/bootstrap/cache
     networks:
       - laravel
@@ -33,8 +33,8 @@ services:
     volumes:
       - .:/var/www:ro
       - storage_data:/var/www/storage:ro
-      # - /var/www/test_apps:/var/www/storage/app/public:ro
-      - C:\Users\tennu\Documents\RND\Laravel:/var/www/storage/app/public:ro
+      - /var/www/test_apps:/var/www/storage/app/public:ro
+      # - C:\Users\tennu\Documents\RND\Laravel:/var/www/storage/app/public:ro
       - cache_data:/var/www/bootstrap/cache:ro
     depends_on:
       app:
