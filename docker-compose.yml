@@ -9,7 +9,6 @@ services:
       APP_KEY: "base64:eZ/bltVtghoaZSdU+I14iF/BKOXCgnenDnmO2UCu+fk="
       APP_URL: http://localhost:8000
     volumes:
-      - .:/var/www
       - vendor_data:/var/www/vendor
       # - storage_data:/var/www/storage
       - /var/www/test_apps:/var/www/storage/app/public
@@ -31,7 +30,6 @@ services:
     ports:
       - "8081:80"
     volumes:
-      - .:/var/www:ro
       # - storage_data:/var/www/storage:ro
       - /var/www/test_apps:/var/www/storage/app/public:ro
       # - C:\Users\tennu\Documents\RND\Laravel:/var/www/storage/app/public:ro
